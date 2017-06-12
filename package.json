@@ -5,6 +5,9 @@
   "repository": "https://github.com/smclab/stylelint-dxp-theme.git",
   "author": "Pier Paolo Ramon <pierpaolo.ramon@smc.it>",
   "license": "LGPL-2.1",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "peerDependencies": {
     "stylelint": "^7.11.0"
   },
