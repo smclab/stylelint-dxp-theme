@@ -1,6 +1,6 @@
 {
   "name": "@smclab/stylelint-dxp-theme",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "index.js",
   "repository": "https://github.com/smclab/stylelint-dxp-theme.git",
   "author": "Pier Paolo Ramon <pierpaolo.ramon@smc.it>",
