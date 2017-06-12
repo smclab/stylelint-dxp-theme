@@ -18,10 +18,94 @@ Configure it in your `.stylelintrc`:
     "@smclab/stylelint-dxp-theme"
   ],
   "rules": {
-    "smc-dxp-theme/components": true
+    "smc-dxp-theme/components": true,
+    "smc-dxp-theme/disallow-ids": true
   }
 }
 
+```
+
+Theme Structure
+---------------
+
+The recommended theme structure (regarding CSS) is as follows:
+
+```bash
+src/css
+│   # custom components:
+├── components/_*.scss
+│   # changes (and variants) to BS/Clay components:
+├── styles/_*.scss
+│   # import from ./styles and then ./components:
+├── _aui_custom.scss
+│   # customize BS/Clay:
+└── _aui_variables.scss
+```
+
+Rules
+-----
+
+### Components
+
+```json
+rules: {
+  "smc-dxp-theme/components": true
+}
+```
+
+This rule is applied to all files inside `src/css/components`.
+
+It requires all root selectors to be strictly related to the component styled in the file.
+
+The name of the component comes from the name of the file.
+
+```diff
+my-cool-theme/src/css/components/_my-carousel.scss
+
+// This rule is ok because it matches the file name:
++ .my-carousel {
++   background: white;
++ }
+
+// Variants and components’ parts are ok too:
++ .my-carousel-vertical {
++   flex-direction: column;
++ }
+
+// Unrelated selectors are not ok:
+- .btn-for-carousel {
+-    position: absolute;
+- }
+
+// Unrelated selectors are ok **if nested**
++ .my-carousel {
++   .btn-for-carousel { position: absolute; }
++ }
+
+// All selectors in a list must be related, so this is not ok:
+- .my-carousel, .my-pagination { … }
+```
+
+### Disallow IDs
+
+```json
+rules: {
+  "smc-dxp-theme/components": true
+}
+```
+
+This rule is applied to all files inside `src/css/components` and `src/css/styles`.
+
+```diff
+my-cool-theme/src/css/styles/_my-carousel.scss
+
+// All selector types are ok…
++ a:link, a:visited { … }
++ [rel="slideshow"] { … }
+
+// …but not IDs:
+- #someid { … }
+- .some-class #someid { … }
 ```
 
 Credits
